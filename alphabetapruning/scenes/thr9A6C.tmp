@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://yaiypvasatu3"]
+
+[ext_resource type="PackedScene" uid="uid://ddnukyotbyv38" path="res://scenes/node.tscn" id="1_nxiq5"]
+[ext_resource type="PackedScene" uid="uid://btdxpkehedgea" path="res://scenes/camera.tscn" id="2_2pe12"]
+[ext_resource type="Script" path="res://scripts/camera_and_hud.gd" id="2_hlm5d"]
+
+[node name="Three" type="Node2D"]
+
+[node name="Node" parent="." instance=ExtResource("1_nxiq5")]
+offset_left = 132.0
+offset_top = 112.0
+offset_right = 172.0
+offset_bottom = 152.0
+
+[node name="AcceptDialog" type="AcceptDialog" parent="." groups=["accept_dialog"]]
+title = "ERROR!"
+dialog_text = "Tipo de dato incorrecto, ingrese solo valores numericos."
+
+[node name="Camera2D" parent="." instance=ExtResource("2_2pe12")]
+position = Vector2(623, 340)
+script = null
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = 60
+dragger_visibility = 2
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/VSplitContainer"]
+layout_mode = 2
+color = Color(0.101961, 0.0941176, 0.168627, 1)
+
+[node name="Node" parent="Camera2D/VSplitContainer" instance=ExtResource("1_nxiq5")]
+layout_mode = 2
+
+[node name="CameraControler" type="Node2D" parent="."]
+script = ExtResource("2_hlm5d")

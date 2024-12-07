@@ -1,0 +1,186 @@
+[gd_scene load_steps=9 format=3 uid="uid://yaiypvasatu3"]
+
+[ext_resource type="PackedScene" uid="uid://ddnukyotbyv38" path="res://scenes/node.tscn" id="1_nxiq5"]
+[ext_resource type="PackedScene" uid="uid://btdxpkehedgea" path="res://scenes/camera.tscn" id="2_2pe12"]
+[ext_resource type="Script" path="res://scripts/back_ground.gd" id="3_5hrh4"]
+[ext_resource type="PackedScene" uid="uid://cfqmywl025qul" path="res://scenes/barra_control.tscn" id="3_5syjr"]
+[ext_resource type="Script" path="res://scripts/button_handler.gd" id="3_yijai"]
+[ext_resource type="Script" path="res://scenes/arbol.gd" id="4_fk6j5"]
+[ext_resource type="Script" path="res://scripts/controlador_animaciones.gd" id="6_3568o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dcq7j"]
+
+[node name="Three" type="Node2D"]
+
+[node name="Camera2D" parent="." instance=ExtResource("2_2pe12")]
+position_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Camera2D/CanvasLayer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+split_offset = 60
+dragger_visibility = 2
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer/VSplitContainer"]
+layout_mode = 2
+color = Color(1, 1, 1, 0.411765)
+
+[node name="ButtonHandler" type="HBoxContainer" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("3_yijai")
+
+[node name="btn_container" type="MarginContainer" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" groups=["btn_add_node"]]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Button" type="Button" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container"]
+layout_mode = 2
+text = "Añadir Nodo"
+
+[node name="btn_container3" type="MarginContainer" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" groups=["btn_add_first_node"]]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="btn_add_first_node" type="Button" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container3"]
+layout_mode = 2
+text = "Añadir Nodo"
+
+[node name="btn_container2" type="MarginContainer" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" groups=["btn_delete_node"]]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="btn_delete" type="Button" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container2"]
+layout_mode = 2
+text = "Eliminar Nodo"
+
+[node name="btn_container4" type="MarginContainer" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" groups=["btn_minimax"]]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="btn_minimax" type="Button" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container4"]
+layout_mode = 2
+text = "Iniciar MINIMAX"
+
+[node name="btn_container6" type="MarginContainer" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" groups=["btn_poda"]]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="btn_alpha_beta" type="Button" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container6"]
+layout_mode = 2
+text = "Poda αβ (izquierda)"
+
+[node name="btn_container8" type="MarginContainer" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" groups=["btn_poda"]]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="btn_alpha_beta_derecha" type="Button" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container8"]
+layout_mode = 2
+text = "Poda αβ (derecha)"
+
+[node name="btn_container5" type="MarginContainer" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" groups=["btn_llenar"]]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="btn_llenar" type="Button" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container5"]
+layout_mode = 2
+text = "Llenar Arbitrariamente"
+
+[node name="btn_container7" type="MarginContainer" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" groups=["btn_editar"]]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="btn_editar" type="Button" parent="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container7"]
+layout_mode = 2
+text = "Editar"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Camera2D/CanvasLayer/VSplitContainer"]
+layout_mode = 2
+mouse_filter = 2
+split_offset = 100
+dragger_visibility = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D/CanvasLayer/VSplitContainer/VSplitContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_right = 950
+
+[node name="BarraControl" parent="Camera2D/CanvasLayer/VSplitContainer/VSplitContainer/MarginContainer" instance=ExtResource("3_5syjr")]
+visible = false
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Camera2D/CanvasLayer/VSplitContainer/VSplitContainer"]
+layout_mode = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+color = Color(1, 1, 1, 0)
+
+[node name="BackGround" type="Panel" parent="Camera2D"]
+z_index = -10
+custom_minimum_size = Vector2(5000, 5000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dcq7j")
+script = ExtResource("3_5hrh4")
+
+[node name="AcceptDialog" type="AcceptDialog" parent="." groups=["accept_dialog"]]
+title = "ERROR!"
+dialog_text = "Tipo de dato incorrecto, ingrese solo valores numericos."
+
+[node name="AcceptDialog2" type="AcceptDialog" parent="." groups=["err_ultimo_nivel"]]
+auto_translate_mode = 1
+title = "ERROR!"
+size = Vector2i(550, 100)
+dialog_text = "El ultimo nivel de nodos tiene que estar lleno para poder comenzar"
+
+[node name="arbol" type="Node" parent="."]
+script = ExtResource("4_fk6j5")
+
+[node name="Node" parent="arbol" groups=["head_node"] instance=ExtResource("1_nxiq5")]
+offset_left = -26.0
+offset_top = -170.0
+offset_right = 14.0
+offset_bottom = -130.0
+mouse_default_cursor_shape = 2
+
+[node name="ControladorAnimaciones" type="Node" parent="." groups=["animaciones"]]
+script = ExtResource("6_3568o")
+
+[node name="paso" type="Timer" parent="ControladorAnimaciones"]
+one_shot = true
+
+[connection signal="pressed" from="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container/Button" to="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" method="_on_button_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container3/btn_add_first_node" to="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" method="_on_btn_add_first_node_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container2/btn_delete" to="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" method="_on_btn_delete_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container4/btn_minimax" to="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" method="_on_btn_minimax_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container6/btn_alpha_beta" to="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" method="_on_btn_alpha_beta_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container8/btn_alpha_beta_derecha" to="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" method="_on_btn_alpha_beta_derecha_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container5/btn_llenar" to="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" method="_on_btn_llenar_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler/btn_container7/btn_editar" to="Camera2D/CanvasLayer/VSplitContainer/ColorRect/ButtonHandler" method="_on_btn_editar_pressed"]
+[connection signal="gui_input" from="Camera2D/BackGround" to="Camera2D/BackGround" method="_on_gui_input"]
+[connection signal="timeout" from="ControladorAnimaciones/paso" to="ControladorAnimaciones" method="_on_paso_timeout"]
