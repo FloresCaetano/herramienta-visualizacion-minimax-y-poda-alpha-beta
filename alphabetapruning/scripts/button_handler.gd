@@ -21,8 +21,10 @@ func _on_btn_add_first_node_pressed() -> void:
 
 func _on_btn_minimax_pressed() -> void:
 	if $"../../../../../arbol".validar_ultimo_nivel_lleno():
-		get_tree().get_first_node_in_group("btn_poda").visible = false
 		get_tree().get_first_node_in_group("btn_llenar").visible = false
+		get_tree().get_nodes_in_group("btn_poda")[0].visible = false
+		get_tree().get_nodes_in_group("btn_poda")[1].visible = false
+		get_tree().get_first_node_in_group("btn_minimax").visible = false
 		get_tree().get_first_node_in_group("btn_editar").visible = true
 		GLOBAL.puede_editar_nodos = false
 		
@@ -34,8 +36,10 @@ func _on_btn_minimax_pressed() -> void:
 
 func _on_btn_alpha_beta_pressed() -> void:
 	if $"../../../../../arbol".validar_ultimo_nivel_lleno():
-		get_tree().get_first_node_in_group("btn_minimax").visible = false
 		get_tree().get_first_node_in_group("btn_llenar").visible = false
+		get_tree().get_nodes_in_group("btn_poda")[0].visible = false
+		get_tree().get_nodes_in_group("btn_poda")[1].visible = false
+		get_tree().get_first_node_in_group("btn_minimax").visible = false
 		get_tree().get_first_node_in_group("btn_editar").visible = true
 		GLOBAL.puede_editar_nodos = false
 		
@@ -49,8 +53,10 @@ func _on_btn_alpha_beta_pressed() -> void:
 
 func _on_btn_alpha_beta_derecha_pressed() -> void:
 	if $"../../../../../arbol".validar_ultimo_nivel_lleno():
-		get_tree().get_first_node_in_group("btn_minimax").visible = false
 		get_tree().get_first_node_in_group("btn_llenar").visible = false
+		get_tree().get_nodes_in_group("btn_poda")[0].visible = false
+		get_tree().get_nodes_in_group("btn_poda")[1].visible = false
+		get_tree().get_first_node_in_group("btn_minimax").visible = false
 		get_tree().get_first_node_in_group("btn_editar").visible = true
 		GLOBAL.puede_editar_nodos = false
 		
@@ -80,7 +86,9 @@ func _on_btn_editar_pressed() -> void:
 	$"../../../../../arbol".nodos_seleccionados.clear()
 	GLOBAL.pasos.clear()
 	$"../../../../../arbol".reiniciar_arbol()
-	get_tree().get_first_node_in_group("btn_minimax").visible = true
-	get_tree().get_first_node_in_group("btn_poda").visible = true
 	get_tree().get_first_node_in_group("btn_llenar").visible = true
+	get_tree().get_nodes_in_group("btn_poda")[0].visible = true
+	get_tree().get_nodes_in_group("btn_poda")[1].visible = true
+	get_tree().get_first_node_in_group("btn_minimax").visible = true
 	get_tree().get_first_node_in_group("btn_editar").visible = false
+	GLOBAL.puede_editar_nodos = true

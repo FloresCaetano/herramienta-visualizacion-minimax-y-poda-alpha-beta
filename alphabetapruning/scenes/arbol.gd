@@ -5,6 +5,7 @@ var nodos_seleccionados : Array = []
 
 func iniciar_minimax():
 	var nodos_por_nivel = recorrer_arbol_y_separar_por_niveles(cabeza)
+	actualizar_altura_arbol()
 	minimax(nodos_por_nivel, GLOBAL.tree_height)
 
 func minimax(nodos_por_nivel : Dictionary, siguiente_nivel : int):
